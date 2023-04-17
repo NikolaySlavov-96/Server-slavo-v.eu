@@ -20,8 +20,8 @@ async function start() {
     await database();
     console.log('Success DB connect')
 
-    https.createServer(optionse, app)
-        .listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
+    // https.createServer(optionse, app)
+        // .listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 
     app.use(express.json());
     app.use(cors());
@@ -32,5 +32,5 @@ async function start() {
 
     app.use('/subscribe', emailController);
 
-    // app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
+    app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 }
