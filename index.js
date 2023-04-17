@@ -26,6 +26,10 @@ async function start() {
     app.use(express.json());
     app.use(cors());
 
+    app.get('/', (req, res) => {
+        res.status(200).json({ message: 'Success' });
+    });
+
     app.use('/subscribe', emailController);
 
     // app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
