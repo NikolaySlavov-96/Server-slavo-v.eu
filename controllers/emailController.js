@@ -3,6 +3,10 @@ const { body, validationResult } = require('express-validator');
 const { addEmailWrite, checkEmail } = require('../services/emailService');
 const { parserError } = require('../util/parser');
 
+emailController.get('/email', (req, res) => {
+    res.json({ message: "success" })
+})
+
 emailController.post('/email',
     body('email').isEmail().withMessage('Invalid Email'),
     async (req, res) => {
@@ -15,10 +19,10 @@ emailController.post('/email',
                 email: req.body.email
             }
             const taken = await checkEmail(req.body.email);
-            if(taken) {
+            if (taken) {
                 throw new Error('Email address is taken');
             }
-            
+
             await addEmailWrite(dataEmail);
             res.json({ message: 'Successfull Subscribe' });
         } catch (err) {
