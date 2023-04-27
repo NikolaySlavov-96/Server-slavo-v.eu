@@ -2,11 +2,13 @@ const https = require('https');
 const fs = require('fs');
 const express = require('express');
 const cors = require('./middlewares/cors');
-const emailController = require('./controllers/emailController');
 const database = require('./config/database');
 
-const PORT_SERVER = 5000;
+const emailController = require('./controllers/emailController');
+const projectController = require('./controllers/projectController');
 
+const PORT_SERVER = 5000;
+/*
 const optionse = {
     // key: fs.readFileSync('../p-key.key'),
     key: fs.readFileSync('../key-PRK.pem'),
@@ -16,7 +18,7 @@ const optionse = {
         fs.readFileSync('../ca-bundle.pem')
     ]
 }
-
+*/
 start();
 
 async function start() {
@@ -25,8 +27,7 @@ async function start() {
     await database();
     console.log('Success DB connect')
 
-    https.createServer(optionse, app)
-         .listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
+    // https.createServer(optionse, app).listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 
     app.use(express.json());
     app.use(cors());
@@ -36,6 +37,7 @@ async function start() {
     });
 
     app.use('/subscribe', emailController);
+    app.use('/project', projectController);
 
-    // app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
+    app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 }
