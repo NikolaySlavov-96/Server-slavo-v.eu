@@ -7,7 +7,8 @@ const database = require('./config/database');
 const emailController = require('./controllers/emailController');
 const projectController = require('./controllers/projectController');
 
-const PORT_SERVER = 5000;
+// const PORT_SERVER = 5000;
+const PORT_SERVER = 3000;
 /*
 const optionse = {
     // key: fs.readFileSync('../p-key.key'),

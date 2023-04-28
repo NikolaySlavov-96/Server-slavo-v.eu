@@ -7,15 +7,10 @@ projectController.get('/all', async (req, res) => {
     res.json(data);
 });
 
-projectController.get('/details/:id', async (req, res) => {
+projectController.get('/:id', async (req, res) => {
     const data = await getProjectById(req.params.id);
     res.json(data);
 });
-
-projectController.get('/edit/:id', async (req, res) => {
-    const data = await getProjectById(req.params.id);
-    res.json(data);
-})
 
 projectController.post('/create', async (req, res) => {
     const body = req.body;
@@ -43,7 +38,7 @@ projectController.post('/create', async (req, res) => {
     }
 })
 
-projectController.put('/edit/:id', async (req, res) => {
+projectController.put('/:id', async (req, res) => {
     const body = req.body;
     const data = {
         titleProject: body.titleProject,

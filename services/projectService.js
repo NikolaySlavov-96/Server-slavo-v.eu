@@ -1,15 +1,15 @@
 const Project = require("../models/Project");
 
 async function getAllProject() {
-    return Project.find({}).lean();
+    return await Project.find({}).lean();
 }
 
 async function getProjectById(id) {
-    return Project.findById(id).lean();
+    return await Project.findById(id).lean();
 }
 
 async function createProject(data) {
-    return Project.create(data);
+    return await Project.create(data);
 }
 
 async function editProject(projectId, data) {
