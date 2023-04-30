@@ -1,3 +1,4 @@
+const { hasUser, hasRole } = require('../middlewares/guards');
 const { getAllProject, getProjectById, editProject, createProject } = require('../services/projectService');
 
 const projectController = require('express').Router();
@@ -12,7 +13,7 @@ projectController.get('/:id', async (req, res) => {
     res.json(data);
 });
 
-projectController.post('/create', async (req, res) => {
+projectController.post('/create', hasUser(), hasRole(), async (req, res) => {
     const body = req.body;
     const data = {
         titleProject: body.titleProject,
@@ -23,13 +24,13 @@ projectController.post('/create', async (req, res) => {
         baseDB: body.baseDB,
         linkGitHub: body.linkGitHub,
         path: body.path,
-        dateCreate: body.dateCreate,
+        dateCreate: new Date(),
     }
     try {
         if (Object.values(data).some(d => !d)) {
             throw new Error('All fields is required');
         }
-
+        
         await createProject(data);
         res.json({ message: 'Successfull edited' });
     } catch (err) {
@@ -38,7 +39,7 @@ projectController.post('/create', async (req, res) => {
     }
 })
 
-projectController.put('/:id', async (req, res) => {
+projectController.put('/:id', hasUser(), hasRole(), async (req, res) => {
     const body = req.body;
     const data = {
         titleProject: body.titleProject,

@@ -1,7 +1,7 @@
 const Project = require("../models/Project");
 
 async function getAllProject() {
-    return await Project.find({}).lean();
+    return await Project.find({}).sort({ _id: -1 }).lean();
 }
 
 async function getProjectById(id) {

@@ -30,6 +30,7 @@ async function start() {
 
     // https.createServer(optionse, app).listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 
+    // app.use(express.static('static'))
     app.use(express.json());
     app.use(cors());
 
