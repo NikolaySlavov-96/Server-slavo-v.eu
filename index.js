@@ -6,6 +6,7 @@ const database = require('./config/database');
 
 const emailController = require('./controllers/emailController');
 const projectController = require('./controllers/projectController');
+const pictureController = require('./controllers/pictureController');
 
 // const PORT_SERVER = 5000;
 const PORT_SERVER = 3000;
@@ -40,6 +41,7 @@ async function start() {
 
     app.use('/subscribe', emailController);
     app.use('/project', projectController);
+    app.use('/picture', pictureController);
 
     app.listen(PORT_SERVER, () => console.log('Server Listen in ' + PORT_SERVER));
 }
