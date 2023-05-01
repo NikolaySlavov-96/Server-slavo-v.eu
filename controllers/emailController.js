@@ -18,7 +18,7 @@ emailController.post('/email',
             const dataEmail = {
                 email: req.body.email
             }
-            const taken = await checkEmail(req.body.email);
+            const taken = await checkEmail(dataEmail.email);
             if (taken) {
                 throw new Error('Email address is taken');
             }
